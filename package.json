@@ -24,8 +24,8 @@
     "extends": "standard"
   },
   "scripts": {
-    "dev": "node --watch src/index.js",
+    "dev": "node --watch index.js",
     "lint": "standard",
-    "start": "node src/index.js"
+    "start": "node index.js"
   }
 }
