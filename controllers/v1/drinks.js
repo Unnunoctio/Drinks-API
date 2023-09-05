@@ -1,8 +1,9 @@
 import path from 'node:path'
 import ExcelJS from 'exceljs'
 import DrinkModel from '../../models/DrinkModel.js'
-import { validateDrink, validatePartialQueryDrink } from '../../zod/DrinkSchema.js'
+import { validateDrink, validatePartialBeerDrink, validatePartialDrink, validatePartialQueryDrink, validatePartialWineDrink } from '../../zod/DrinkSchema.js'
 import { validatePagination } from '../../zod/PaginationSchema.js'
+import { Category } from '../../enums.js'
 
 export const getAllDrinks = async (req, res) => {
   try {
@@ -87,6 +88,43 @@ export const addManyDrinks = async (req, res) => {
 
     const drinksAdded = await DrinkModel.insertMany(data)
     res.status(201).sendResponse({ drinks_added: drinksAdded })
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
+
+export const modifyDrink = async (req, res) => {
+  try {
+    const { id } = req.params
+    const drink = await DrinkModel.findById(id)
+    if (!drink) return res.status(404).sendResponse({ error: { message: 'Drink not found' } })
+
+    let drinkModification = {}
+    if (drink.category === Category.CERVEZAS) drinkModification = validatePartialBeerDrink(req.body)
+    else if (drink.category === Category.VINOS) drinkModification = validatePartialWineDrink(req.body)
+    else drinkModification = validatePartialDrink(req.body)
+
+    if (drinkModification.error) throw new Error(drinkModification.error.message)
+
+    const drinkModified = await DrinkModel.findByIdAndUpdate(id, drinkModification.data, { new: true })
+    res.status(200).sendResponse(drinkModified)
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
+
+export const deleteDrink = async (req, res) => {
+  try {
+    const { id } = req.params
+    const drink = await DrinkModel.findById(id)
+    if (!drink) return res.status(404).sendResponse({ error: { message: 'Drink not found' } })
+
+    await drink.deleteOne()
+    res.status(200).sendResponse(drink)
   } catch (error) {
     res.status(400).sendResponse({
       error: JSON.parse(error.message)

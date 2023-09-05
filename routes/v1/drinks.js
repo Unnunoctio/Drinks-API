@@ -1,6 +1,6 @@
 import multer from 'multer'
 import { Router } from 'express'
-import { addDrink, addManyDrinks, getAllDrinks, getDrinkById } from '../../controllers/v1/drinks.js'
+import { addDrink, addManyDrinks, deleteDrink, getAllDrinks, getDrinkById, modifyDrink } from '../../controllers/v1/drinks.js'
 import verifyApiKey from '../../middlewares/verifyApiKey.js'
 
 const storage = multer.memoryStorage()
@@ -23,5 +23,9 @@ router.get('/drinks/:id', getDrinkById)
 router.post('/drinks', verifyApiKey, addDrink)
 
 router.post('/drinks/excel', [verifyApiKey, upload.single('file')], addManyDrinks)
+
+router.patch('/drinks/:id', verifyApiKey, modifyDrink)
+
+router.delete('/drinks/:id', verifyApiKey, deleteDrink)
 
 export default router
