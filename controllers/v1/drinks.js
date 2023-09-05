@@ -1,5 +1,5 @@
 import DrinkModel from '../../models/DrinkModel.js'
-import { validatePartialQueryDrink } from '../../zod/DrinkSchema.js'
+import { validateDrink, validatePartialQueryDrink } from '../../zod/DrinkSchema.js'
 import { validatePagination } from '../../zod/PaginationSchema.js'
 
 export const getAllDrinks = async (req, res) => {
@@ -28,6 +28,21 @@ export const getDrinkById = async (req, res) => {
 
     const drink = await DrinkModel.findById(id)
     res.status(200).sendResponse(drink)
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
+
+export const addDrink = async (req, res) => {
+  try {
+    const drink = validateDrink(req.body)
+    if (drink.error) throw new Error(drink.error.message)
+
+    const newDrink = new DrinkModel(drink.data)
+    await newDrink.save()
+    res.status(201).sendResponse(newDrink)
   } catch (error) {
     res.status(400).sendResponse({
       error: JSON.parse(error.message)

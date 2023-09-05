@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import { getAllDrinks, getDrinkById } from '../../controllers/v1/drinks.js'
+import { addDrink, getAllDrinks, getDrinkById } from '../../controllers/v1/drinks.js'
+import verifyApiKey from '../../middlewares/verifyApiKey.js'
 
 const router = Router()
 
@@ -15,5 +16,7 @@ router.get('/', (_, res) => {
 router.get('/drinks', getAllDrinks)
 
 router.get('/drinks/:id', getDrinkById)
+
+router.post('/drinks', verifyApiKey, addDrink)
 
 export default router
