@@ -1,4 +1,5 @@
 import DrinkModel from '../../models/DrinkModel.js'
+import { validatePartialQueryDrink } from '../../zod/DrinkSchema.js'
 import { validatePagination } from '../../zod/PaginationSchema.js'
 
 export const getAllDrinks = async (req, res) => {
@@ -9,9 +10,10 @@ export const getAllDrinks = async (req, res) => {
     const { page, limit } = pagination.data
     const skip = (page - 1) * limit
 
-    // TODO: filters
+    const filters = validatePartialQueryDrink(req.parsedQuery)
+    if (filters.error) throw new Error(filters.error.message)
 
-    const drinks = await DrinkModel.find().skip(skip).limit(limit)
+    const drinks = await DrinkModel.find(filters.data).skip(skip).limit(limit)
     res.status(200).sendResponse(drinks)
   } catch (error) {
     res.status(400).sendResponse({

@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/', (_, res) => {
   const data = {
-    drinks: 'https://api-drinks.vercel.app/api/v1/drinks?{page, limit} (all drinks: limit=0)'
+    drinks: 'https://api-drinks.vercel.app/api/v1/drinks?{page, limit, name, brand, alcoholic_grade, content, package, category, sub_category} (all drinks: limit=0)'
   }
 
   res.sendResponse(data)
