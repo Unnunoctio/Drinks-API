@@ -1,3 +1,5 @@
+import path from 'node:path'
+import ExcelJS from 'exceljs'
 import DrinkModel from '../../models/DrinkModel.js'
 import { validateDrink, validatePartialQueryDrink } from '../../zod/DrinkSchema.js'
 import { validatePagination } from '../../zod/PaginationSchema.js'
@@ -43,6 +45,48 @@ export const addDrink = async (req, res) => {
     const newDrink = new DrinkModel(drink.data)
     await newDrink.save()
     res.status(201).sendResponse(newDrink)
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
+
+export const addManyDrinks = async (req, res) => {
+  try {
+    if (!req.file) throw new Error(JSON.stringify({ message: 'No file provided' }))
+
+    const extension = path.extname(req.file.originalname)
+    const validExtensions = ['.xlsx', '.xls', '.csv']
+    if (validExtensions.includes(extension) === false) throw new Error(JSON.stringify({ message: 'Invalid extension file', received: extension, options: validExtensions }))
+
+    const workbook = new ExcelJS.Workbook()
+    await workbook.xlsx.load(req.file.buffer)
+
+    const worksheet = workbook.getWorksheet('Data')
+    const data = []
+
+    for (let i = 2; i <= worksheet.rowCount; i++) {
+      const row = worksheet.getRow(i)
+      // eslint-disable-next-line no-unused-vars
+      const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, strain, vineyard] = row.values
+      const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, strain, vineyard })
+      if (drinkValid.error) continue
+
+      const drinkExists = await DrinkModel.findOne({
+        name: drinkValid.data.name,
+        brand: drinkValid.data.brand,
+        alcoholic_grade: drinkValid.data.alcoholic_grade,
+        content: drinkValid.data.content,
+        package: drinkValid.data.package
+      })
+      if (drinkExists) continue
+
+      data.push(drinkValid.data)
+    }
+
+    const drinksAdded = await DrinkModel.insertMany(data)
+    res.status(201).sendResponse({ drinks_added: drinksAdded })
   } catch (error) {
     res.status(400).sendResponse({
       error: JSON.parse(error.message)

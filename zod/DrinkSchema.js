@@ -32,7 +32,7 @@ export const validateDrink = (object) => {
 
   const { category } = genericValidation.data
   if (category === Category.CERVEZAS) return beerDrinkSchema.safeParse(object)
-  if (category === Category.VINOS) return WineDrinkSchema.safeParse.safeParse(object)
+  if (category === Category.VINOS) return WineDrinkSchema.safeParse(object)
 
   return genericValidation
 }
