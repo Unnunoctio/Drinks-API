@@ -21,3 +21,16 @@ export const getAllDrinks = async (req, res) => {
     })
   }
 }
+
+export const getDrinkById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const drink = await DrinkModel.findById(id)
+    res.status(200).sendResponse(drink)
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
