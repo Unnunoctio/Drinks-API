@@ -131,3 +131,14 @@ export const deleteDrink = async (req, res) => {
     })
   }
 }
+
+export const deleteAllDrinks = async (req, res) => {
+  try {
+    await DrinkModel.deleteMany({})
+    res.status(200).sendResponse({ message: 'All drinks deleted' })
+  } catch (error) {
+    res.status(400).sendResponse({
+      error: JSON.parse(error.message)
+    })
+  }
+}
