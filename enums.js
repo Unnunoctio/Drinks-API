@@ -32,8 +32,11 @@ export const Variety = {
   ALE: 'Ale',
   LAGER: 'Lager',
   STOUT: 'Stout',
+  BOCK: 'Bock',
+  NEGRA: 'Negra',
   IPA: 'IPA',
-  TRIGO: 'Trigo'
+  TRIGO: 'Trigo',
+  FRUIT: 'Fruit'
 }
 
 export const Strain = {
