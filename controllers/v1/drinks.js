@@ -72,7 +72,7 @@ export const addManyDrinks = async (req, res) => {
       // eslint-disable-next-line no-unused-vars
       const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, strain, vineyard] = row.values
       const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, strain, vineyard })
-      if (drinkValid.error) return undefined
+      if (drinkValid.error) return null
 
       const drinkExists = await DrinkModel.findOne({
         name: drinkValid.data.name,
@@ -81,11 +81,11 @@ export const addManyDrinks = async (req, res) => {
         content: drinkValid.data.content,
         package: drinkValid.data.package
       })
-      if (drinkExists) return undefined
+      if (drinkExists) return null
       return drinkValid.data
     }))
 
-    const drinksAdded = await DrinkModel.insertMany(dataDrinks.filter(data => data !== undefined))
+    const drinksAdded = await DrinkModel.insertMany(dataDrinks.filter(data => data !== null))
     res.status(201).sendResponse({ drinks_added: drinksAdded })
   } catch (error) {
     res.status(400).sendResponse({
