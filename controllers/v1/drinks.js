@@ -65,14 +65,14 @@ export const addManyDrinks = async (req, res) => {
     await workbook.xlsx.load(req.file.buffer)
 
     const worksheet = workbook.getWorksheet('Data')
-    const data = []
 
-    for (let i = 2; i <= worksheet.rowCount; i++) {
-      const row = worksheet.getRow(i)
+    const rowNumbers = Array.from({ length: worksheet.rowCount - 1 }, (_, i) => i + 2)
+    const dataDrinks = await Promise.all(rowNumbers.map(async rowNumber => {
+      const row = worksheet.getRow(rowNumber)
       // eslint-disable-next-line no-unused-vars
       const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, strain, vineyard] = row.values
       const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, strain, vineyard })
-      if (drinkValid.error) continue
+      if (drinkValid.error) return undefined
 
       const drinkExists = await DrinkModel.findOne({
         name: drinkValid.data.name,
@@ -81,12 +81,11 @@ export const addManyDrinks = async (req, res) => {
         content: drinkValid.data.content,
         package: drinkValid.data.package
       })
-      if (drinkExists) continue
+      if (drinkExists) return undefined
+      return drinkValid.data
+    }))
 
-      data.push(drinkValid.data)
-    }
-
-    const drinksAdded = await DrinkModel.insertMany(data)
+    const drinksAdded = await DrinkModel.insertMany(dataDrinks.filter(data => data !== undefined))
     res.status(201).sendResponse({ drinks_added: drinksAdded })
   } catch (error) {
     res.status(400).sendResponse({
