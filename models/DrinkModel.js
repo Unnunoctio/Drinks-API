@@ -12,8 +12,8 @@ const DrinkSchema = Schema({
   made_in: { type: String, trim: true },
   // Cervezas
   variety: { type: String, trim: true, enum: Object.values(Variety) },
-  bitterness: { type: String, trim: true },
-  temperature: { type: String, trin: true},
+  bitterness: { type: Number },
+  temperature: { type: String, trim: true},
   // Vinos
   strain: { type: String, trim: true, enum: Object.values(Strain) },
   vineyard: { type: String, trim: true }
