@@ -85,7 +85,6 @@ export const Variety = {
   BIERE_DE_GARDE: 'Bière de Garde',
   BELGIAN_BLONDE_ALE: 'Belgian Blonde Ale',
   WITBIER: 'Witbier',
-  WHEAT_ALE: 'Wheat Ale',
   DARK_ALE: 'Dark Ale',
   PALE_ALE: 'Pale Ale',
   GOLDEN_ALE: 'Golden Ale',
