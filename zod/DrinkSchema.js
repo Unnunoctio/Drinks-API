@@ -14,7 +14,8 @@ const drinkSchema = zod.object({
 
 const beerDrinkSchema = drinkSchema.extend({
   variety: zod.enum(Object.values(Variety)).optional(),
-  bitterness: zod.string().optional()
+  bitterness: zod.string().optional(),
+  temperature: zod.string().optional(),
 })
 
 const WineDrinkSchema = drinkSchema.extend({

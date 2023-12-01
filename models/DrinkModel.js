@@ -10,10 +10,13 @@ const DrinkSchema = Schema({
   category: { type: String, required: true, trim: true, enum: Object.values(Category) },
   sub_category: { type: String, required: true, trim: true, enum: Object.values(SubCategory) },
   made_in: { type: String, trim: true },
-  variety: { type: String, trim: true, enum: Object.values(Variety) }, // Cervezas
-  bitterness: { type: String, trim: true }, // Cervezas
-  strain: { type: String, trim: true, enum: Object.values(Strain) }, // Vinos
-  vineyard: { type: String, trim: true } // Vinos
+  // Cervezas
+  variety: { type: String, trim: true, enum: Object.values(Variety) },
+  bitterness: { type: String, trim: true },
+  temperature: { type: String, trin: true},
+  // Vinos
+  strain: { type: String, trim: true, enum: Object.values(Strain) },
+  vineyard: { type: String, trim: true }
 })
 
 const DrinkModel = model('Drink', DrinkSchema)
