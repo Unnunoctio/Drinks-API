@@ -29,11 +29,8 @@ export const SubCategory = {
 }
 
 export const Variety = {
-  //antes
+  // antes
   ALE: 'Ale',
-  LAGER: 'Lager',
-  STOUT: 'Stout',
-  BOCK: 'Bock',
   NEGRA: 'Negra',
   IPA: 'IPA',
   TRIGO: 'Trigo',
@@ -98,7 +95,7 @@ export const Variety = {
   DOUBLE_HAZY_IPA: 'Double Hazy IPA',
   AMERICAN_PORTER: 'American Porter',
   AMERICAN_IMPERIAL_STOUT: 'American Imperial Stout',
-  AMERICAN_SCOTCH_ALE: 'American Scotch Ale',
+  AMERICAN_SCOTCH_ALE: 'American Scotch Ale'
 }
 
 export const Strain = {

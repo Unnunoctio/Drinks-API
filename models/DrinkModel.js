@@ -13,7 +13,7 @@ const DrinkSchema = Schema({
   // Cervezas
   variety: { type: String, trim: true, enum: Object.values(Variety) },
   bitterness: { type: Number },
-  temperature: { type: String, trim: true},
+  temperature: { type: String, trim: true },
   // Vinos
   strain: { type: String, trim: true, enum: Object.values(Strain) },
   vineyard: { type: String, trim: true }
