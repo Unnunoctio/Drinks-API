@@ -38,6 +38,7 @@ export const Variety = {
   // Escuela Alemana
   LAGER: 'Lager',
   PALE_LAGER: 'Pale Lager',
+  AMBER_LAGER: 'Amber Lager',
   GERMAN_PILS: 'German Pils',
   MUNICH: 'Munich',
   DUNKEL: 'Dunkel',
@@ -96,6 +97,8 @@ export const Variety = {
   INDIAN_PALE_ALE: 'Indian Pale Ale',
   HAZY_IPA: 'Hazy IPA',
   DOUBLE_HAZY_IPA: 'Double Hazy IPA',
+  HAZY_LAGER: 'Hazy Lager',
+  HAZY_APA: 'Hazy APA',
   AMERICAN_PORTER: 'American Porter',
   AMERICAN_IMPERIAL_STOUT: 'American Imperial Stout',
   AMERICAN_SCOTCH_ALE: 'American Scotch Ale'
