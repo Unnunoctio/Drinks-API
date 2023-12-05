@@ -70,8 +70,8 @@ export const addManyDrinks = async (req, res) => {
     const dataDrinks = await Promise.all(rowNumbers.map(async rowNumber => {
       const row = worksheet.getRow(rowNumber)
       // eslint-disable-next-line no-unused-vars
-      const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, strain, vineyard] = row.values
-      const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, strain, vineyard })
+      const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, temperature, strain, vineyard] = row.values
+      const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, temperature, strain, vineyard })
       if (drinkValid.error) return null
 
       const drinkExists = await DrinkModel.findOne({
