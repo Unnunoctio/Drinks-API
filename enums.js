@@ -40,7 +40,10 @@ export const Variety = {
   PALE_LAGER: 'Pale Lager',
   AMBER_LAGER: 'Amber Lager',
   GERMAN_PILS: 'German Pils',
+  GERMAN_LAGER: 'German Lager',
+  STRONG_LAGER: 'Strong Lager',
   MUNICH: 'Munich',
+  DARK_MUNICH: 'Dark Munich',
   DUNKEL: 'Dunkel',
   OKTOBERFEST: 'Oktoberfest',
   BOCK: 'Bock',
@@ -69,8 +72,10 @@ export const Variety = {
   PORTER: 'Porter',
   STOUT: 'Stout',
   IMPERIAL_STOUT: 'Imperial Stout',
+  CREAM_STOUT: 'Cream Stout',
   BROWN_ALE: 'Brown Ale',
   SCOTCH_ALE: 'Scotch Ale',
+  STRONG_SCOTCH_ALE: 'Strong Scotch Ale',
   IRISH_RED_ALE: 'Irish Red Ale',
   // Escuela Belga
   ABBEY_ALES: 'Abbey Ales',
@@ -101,7 +106,19 @@ export const Variety = {
   HAZY_APA: 'Hazy APA',
   AMERICAN_PORTER: 'American Porter',
   AMERICAN_IMPERIAL_STOUT: 'American Imperial Stout',
-  AMERICAN_SCOTCH_ALE: 'American Scotch Ale'
+  AMERICAN_SCOTCH_ALE: 'American Scotch Ale',
+  // Otros
+  KROSS_ROSE_ALE: 'Kross Rose Ale',
+  BLEND: 'Blend',
+  HOPPY_ALE: 'Hoppy Ale',
+  MARZENBIER: 'Märzenbier',
+  GLUTEN_FREE_LAGER: 'Gluten Free Lager',
+  GLUTEN_FREE_DOUBLE_MALT: 'Gluten Free Double Malt',
+  ALSATIAN: 'Alsatian',
+  AMBER_ALE: 'Amber Ale',
+  STRONG_ALE: 'Strong Ale',
+  ROBUST_PORTER: 'Robust Porter',
+  SUMMER_ALE: 'Summer Ale',
 }
 
 export const Strain = {
