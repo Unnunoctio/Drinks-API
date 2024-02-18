@@ -98,6 +98,7 @@ export const Variety = {
   FLANDERS_RED_ALE: 'Flanders Red Ale',
   FLANDERS_BROWN_ALE: 'Flanders Brown Ale',
   // Escuela EEUU
+  AMERICAN_LAGER: 'American Lager',
   AMERICAN_PALE_ALE: 'American Pale Ale',
   INDIAN_PALE_ALE: 'Indian Pale Ale',
   HAZY_IPA: 'Hazy IPA',
