@@ -64,25 +64,32 @@ export const addManyDrinks = async (req, res) => {
     const workbook = new ExcelJS.Workbook()
     await workbook.xlsx.load(req.file.buffer)
 
-    const worksheet = workbook.getWorksheet('Data')
+    const sheetNames = workbook.worksheets.map(worksheet => worksheet.name)
 
-    const rowNumbers = Array.from({ length: worksheet.rowCount - 1 }, (_, i) => i + 2)
-    const dataDrinks = await Promise.all(rowNumbers.map(async rowNumber => {
-      const row = worksheet.getRow(rowNumber)
-      // eslint-disable-next-line no-unused-vars
-      const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, temperature, strain, vineyard] = row.values
-      const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, temperature, strain, vineyard })
-      if (drinkValid.error) return null
+    const drinks = (await Promise.all(sheetNames.map(async sheetName => {
+      const worksheet = workbook.getWorksheet(sheetName)
 
+      const rowNumbers = Array.from({ length: worksheet.rowCount - 1 }, (_, i) => i + 2)
+      return await Promise.all(rowNumbers.map(async rowNumber => {
+        const row = worksheet.getRow(rowNumber)
+        // eslint-disable-next-line no-unused-vars
+        const [_, name, brand, alcoholicGrade, content, packageData, category, subCategory, madeIn, variety, bitterness, temperature, strain, vineyard] = row.values
+        const drinkValid = validateDrink({ name, brand, alcoholic_grade: alcoholicGrade, content, package: packageData, category, sub_category: subCategory, made_in: madeIn, variety, bitterness, temperature, strain, vineyard })
+        if (drinkValid.error) return null
+        return drinkValid.data
+      }))
+    }))).flat().filter(drink => drink !== null)
+
+    const dataDrinks = await Promise.all(drinks.map(async drink => {
       const drinkExists = await DrinkModel.findOne({
-        name: drinkValid.data.name,
-        brand: drinkValid.data.brand,
-        alcoholic_grade: drinkValid.data.alcoholic_grade,
-        content: drinkValid.data.content,
-        package: drinkValid.data.package
+        name: drink.name,
+        brand: drink.brand,
+        alcoholic_grade: drink.alcoholic_grade,
+        content: drink.content,
+        package: drink.package
       })
       if (drinkExists) return null
-      return drinkValid.data
+      return drink
     }))
 
     const drinksAdded = await DrinkModel.insertMany(dataDrinks.filter(data => data !== null))

@@ -119,6 +119,7 @@ export const Variety = {
   STRONG_ALE: 'Strong Ale',
   ROBUST_PORTER: 'Robust Porter',
   SUMMER_ALE: 'Summer Ale',
+  INEDIT: 'Inedit'
 }
 
 export const Strain = {
