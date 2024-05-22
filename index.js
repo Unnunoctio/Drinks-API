@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import drinksRouterV1 from './routes/v1/drinks.js'
 import brandRouterV1 from './routes/v1/brand.js'
 import madeInRouterV1 from './routes/v1/made-in.js'
+import categoryRouterV1 from './routes/v1/category.js'
 
 // Configure dotEnv
 dotenv.config()
@@ -55,6 +56,7 @@ app.use((req, _, next) => {
 app.use('/api/v1', drinksRouterV1)
 app.use('/api/v1', brandRouterV1)
 app.use('/api/v1', madeInRouterV1)
+app.use('/api/v1', categoryRouterV1)
 
 // Global Error Handler
 app.use((_, res) => res.status(404).send('Error 404: Not Found'))
