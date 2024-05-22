@@ -16,21 +16,19 @@ export const getAllDrinks = async (req, res) => {
     const filters = validatePartialQueryDrink(req.parsedQuery)
     if (filters.error) throw new Error(filters.error.message)
 
-    const drinks = await DrinkModel.find(filters.data).skip(skip).limit(limit)
-    res.status(200).sendResponse(drinks)
-  } catch (error) {
-    res.status(400).sendResponse({
-      error: JSON.parse(error.message)
+    let drinks = await DrinkModel.find(filters.data).lean()
+    const count = drinks.length
+
+    // sort drinks by name
+    drinks.sort((a, b) => (a.brand !== b.brand) ? a.brand.localeCompare(b.brand) : a.name.localeCompare(b.name))
+    if (limit > 0) drinks = drinks.slice(skip, skip + limit)
+
+    res.status(200).sendResponse({
+      count,
+      page,
+      limit,
+      drinks: drinks.map(({ _id, __v, ...resto }) => resto)
     })
-  }
-}
-
-export const getDrinkById = async (req, res) => {
-  try {
-    const { id } = req.params
-
-    const drink = await DrinkModel.findById(id)
-    res.status(200).sendResponse(drink)
   } catch (error) {
     res.status(400).sendResponse({
       error: JSON.parse(error.message)
