@@ -58,6 +58,8 @@ export const getBrandByName = async (req, res) => {
     let title = brand
     if (drinksByBrand.length > 0) title = drinksByBrand[0].brand
 
+    // sort drinks by brand and name
+    drinksByBrand.sort((a, b) => (a.brand !== b.brand) ? a.brand.localeCompare(b.brand) : a.name.localeCompare(b.name))
     if (limit > 0) drinksByBrand = drinksByBrand.slice(skip, skip + limit)
 
     res.status(200).sendResponse({
@@ -65,7 +67,7 @@ export const getBrandByName = async (req, res) => {
       count,
       page,
       limit,
-      drinks: drinksByBrand.map(({ _id, __v, ...resto }) => resto).sort((a, b) => (a.brand !== b.brand) ? a.brand.localeCompare(b.brand) : a.name.localeCompare(b.name))
+      drinks: drinksByBrand.map(({ _id, __v, ...resto }) => resto)
     })
   } catch (error) {
     res.status(400).sendResponse({
