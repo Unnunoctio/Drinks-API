@@ -65,7 +65,7 @@ export const getBrandByName = async (req, res) => {
       count,
       page,
       limit,
-      drinks: drinksByBrand.map(({ _id, __v, ...resto }) => resto)
+      drinks: drinksByBrand.map(({ _id, __v, ...resto }) => resto).sort((a, b) => (a.brand !== b.brand) ? a.brand.localeCompare(b.brand) : a.name.localeCompare(b.name))
     })
   } catch (error) {
     res.status(400).sendResponse({
