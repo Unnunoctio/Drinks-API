@@ -1,0 +1,11 @@
+export enum ErrorCode {
+  // Errores de cliente (4xx)
+  BAD_REQUEST = 'BAD_REQUEST',
+  UNAUTHORIZED = 'UNAUTHORIZED',
+  FORBIDDEN = 'FORBIDDEN',
+  NOT_FOUND = 'NOT_FOUND',
+  METHOD_NOT_ALLOWED = 'METHOD_NOT_ALLOWED',
+
+  // Errores de servidor (5xx)
+  INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR'
+}
