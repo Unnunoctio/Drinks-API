@@ -16,3 +16,8 @@ export interface IDrink {
   strain?: string
   vineyard?: string
 }
+
+export interface ZPagination {
+  page: number
+  limit: number
+}
