@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import { DB_URI, PORT } from './config'
 import { customLogger, formatResponse, parseQuery } from './middlewares'
+import drinkRouter from './routes/drink-routes'
 
 // TODO: Configure Database
 try {
@@ -23,11 +24,7 @@ app.use(customLogger)
 app.use(formatResponse)
 
 // TODO: Configure Routes
-app.use('/', (_, res) => {
-  return res.json({
-    data: 'Welcome to the Drinks API'
-  })
-})
+app.use('/api/v2', drinkRouter)
 
 // TODO: Handler not found route
 app.use((_, res) => {
