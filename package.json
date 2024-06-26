@@ -12,7 +12,8 @@
     "typescript": "5.0.0"
   },
   "dependencies": {
-    "express": "4.19.2"
+    "express": "4.19.2",
+    "mongoose": "8.4.4"
   },
   "eslintConfig": {
     "parserOptions": {

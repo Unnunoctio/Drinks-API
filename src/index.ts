@@ -1,8 +1,16 @@
 import express from 'express'
-import { PORT } from './config'
+import mongoose from 'mongoose'
+import { DB_URI, PORT } from './config'
 import { customLogger, formatResponse, parseQuery } from './middlewares'
 
 // TODO: Configure Database
+try {
+  await mongoose.connect(DB_URI as string)
+  console.log('Database connected')
+} catch (error) {
+  console.log('Error connecting to database', error)
+  process.exit(1)
+}
 
 // TODO: Configure Express
 const app = express()
