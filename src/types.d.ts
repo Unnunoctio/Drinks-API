@@ -1,3 +1,4 @@
+import type { ObjectId } from 'mongoose'
 
 export interface IDrink {
   name: string
@@ -15,6 +16,10 @@ export interface IDrink {
   // Wines
   strain?: string
   vineyard?: string
+}
+
+export interface UDrink extends IDrink {
+  _id: ObjectId
 }
 
 export interface ZPagination {
