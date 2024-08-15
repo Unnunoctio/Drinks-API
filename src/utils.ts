@@ -1,4 +1,4 @@
-import { ErrorCode } from './enum'
+import { DrinkCategory, ErrorCode } from './enum'
 
 export const getErrorCodeByStatusCode = (statusCode: number): ErrorCode => {
   switch (statusCode) {
@@ -17,4 +17,8 @@ export const getErrorCodeByStatusCode = (statusCode: number): ErrorCode => {
     default:
       return ErrorCode.INTERNAL_SERVER_ERROR
   }
+}
+
+export const isValidCategory = (category: string): boolean => {
+  return Object.values(DrinkCategory).includes(category as DrinkCategory)
 }

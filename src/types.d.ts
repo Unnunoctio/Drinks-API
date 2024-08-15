@@ -1,5 +1,3 @@
-import type { ObjectId } from 'mongoose'
-
 export interface IDrink {
   name: string
   brand: string
@@ -19,7 +17,7 @@ export interface IDrink {
 }
 
 export interface UDrink extends IDrink {
-  _id: ObjectId
+  _id: any
 }
 
 export interface ZPagination {
