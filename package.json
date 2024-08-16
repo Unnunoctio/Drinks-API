@@ -1,0 +1,23 @@
+{
+  "name": "drinks-api",
+  "version": "1.0.0",
+  "description": "API for drinks",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot src/index.js"
+  },
+  "dependencies": {
+    "hono": "4.5.5",
+    "mongoose": "8.5.3",
+    "nanoid": "5.0.7",
+    "xlsx": "0.18.5",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "standard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  } 
+}
