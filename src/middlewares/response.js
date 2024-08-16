@@ -1,6 +1,8 @@
 export const formatResponse = async (c, next) => {
   await next()
 
+  if (c.res.headers.get('Content-Type') !== 'application/json; charset=UTF-8') return
+
   const body = await c.res.json()
   const status = await c.res.status
   const isOk = status < 400
