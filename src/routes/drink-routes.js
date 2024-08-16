@@ -30,9 +30,9 @@ route.get('/drinks', async (c) => {
   }
 })
 
-route.get('/drinks/excel', async (c) => {
+route.get('/drinks/excel/:category', async (c) => {
   try {
-    const { category } = c.req.query()
+    const category = c.req.param('category')
     if (category === undefined) return c.json({ error: 'Category is required' }, 400)
     if (CATEGORY.includes(category) === false) return c.json({ error: { path: 'category', message: 'Invalid category', values: CATEGORY } }, 400)
 
