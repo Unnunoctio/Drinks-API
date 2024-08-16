@@ -11,7 +11,7 @@ const DrinkSchema = new Schema({
   packaging: { type: String, required: true, enum: PACKAGING, index: true },
   category: { type: String, required: true, enum: CATEGORY, index: true },
   subCategory: { type: String, required: true, enum: SUB_CATEGORY },
-  origin: { type: Number, required: true, trim: true },
+  origin: { type: String, required: true, trim: true },
   // ? CERVEZAS
   variety: { type: String, enum: VARIETY },
   ibu: { type: Number, min: 0, max: 100 },
