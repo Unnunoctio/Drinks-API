@@ -12,12 +12,15 @@ const route = new Hono()
 route.get('/drinks', async (c) => {
   try {
     const query = parseQuery(c)
-    const { page, limit, error } = validatePagination(query)
-    if (error !== undefined) return c.json({ error: error.issues }, 400)
+    const pagination = validatePagination(query)
+    if (pagination.error !== undefined) return c.json({ error: pagination.error.issues }, 400)
+
+    const { page, limit } = pagination.data
+    const skip = (page - 1) * limit
 
     const drinks = await drinkService.findDrinks()
     return c.json({
-      data: drinks,
+      data: drinks.slice(skip, skip + limit),
       pagination: {
         page,
         limit,
