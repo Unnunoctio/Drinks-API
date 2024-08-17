@@ -33,7 +33,7 @@ route.get('/drinks', async (c) => {
   }
 })
 
-route.get('/drinks/excel/:category', async (c) => {
+route.get('/drinks/excel/:category', verifyApiKey, async (c) => {
   try {
     const category = c.req.param('category')
     if (category === undefined) return c.json({ error: 'Category is required' }, 400)
