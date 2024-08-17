@@ -47,9 +47,11 @@ export const VARIETY = [
   'Oktoberfest',
   'Bock',
   'Heller Bock',
+  'Doppel Bock',
   'Weizen',
   'Dunkel Weizen',
   // ? BRITANICA
+  'Porter',
   'Stout',
   'Cream Stout',
   'Brown Ale',
@@ -78,13 +80,20 @@ export const VARIETY = [
   'Kross Rose Ale',
   'Blend',
   'Hoppy Ale',
+  'Hoppy Lager',
+  'Smoky Lager',
   'Märzenbier',
   'Gluten Free Lager',
   'Gluten Free Double Malt',
   'Alsatian',
   'Robust Porter',
   'Summer Ale',
-  'Inedit'
+  'Red IPA',
+  'Session IPA',
+  'Strong Brown Ale',
+  'Imperial Stout',
+  'Inedit',
+  'Roja Fresca'
 ]
 
 export const STRAIN = [
