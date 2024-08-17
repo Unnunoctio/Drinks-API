@@ -40,6 +40,7 @@ route.get('/drinks/excel/:category', async (c) => {
     if (CATEGORY.includes(category) === false) return c.json({ error: { path: 'category', message: 'Invalid category', values: CATEGORY } }, 400)
 
     const drinksByCategory = await drinkService.findDrinksByCategory(category)
+    drinksByCategory.sort((a, b) => a.brand.localeCompare(b.brand))
 
     const workbook = XLSX.utils.book_new()
 
