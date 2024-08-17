@@ -1,9 +1,12 @@
 import { model, Schema } from 'mongoose'
-import { nanoid } from 'nanoid'
+import { customAlphabet } from 'nanoid'
 import { CATEGORY, PACKAGING, STRAIN, SUB_CATEGORY, VARIETY } from '../enum.js'
 
+const lowercase = 'abcdefghijklmnopqrstuvwxyz'
+const nanoid = customAlphabet(lowercase, 10)
+
 const DrinkSchema = new Schema({
-  _id: { type: String, default: () => nanoid(10) },
+  _id: { type: String, default: () => nanoid() },
   name: { type: String, required: true, trim: true, index: true },
   brand: { type: String, required: true, trim: true, index: true },
   abv: { type: Number, required: true, min: 0, max: 100 },
