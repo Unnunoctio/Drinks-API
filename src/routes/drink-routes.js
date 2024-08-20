@@ -19,8 +19,9 @@ route.get('/drinks', async (c) => {
     const skip = (page - 1) * limit
 
     const drinks = await drinkService.findDrinks()
+    drinks.sort((a, b) => (a.brand !== b.brand) ? a.brand.localeCompare(b.brand) : a.name.localeCompare(b.name))
     return c.json({
-      data: drinks.slice(skip, skip + limit),
+      data: (limit === 0) ? drinks : drinks.slice(skip, skip + limit),
       pagination: {
         page,
         limit,
