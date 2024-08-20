@@ -5,6 +5,7 @@ import { prettyJSON } from 'hono/pretty-json'
 import { customLogger } from './middlewares/logger'
 import { formatResponse } from './middlewares/response'
 import drinkRoutes from './routes/drink-routes'
+import brandRoutes from './routes/brand-routes'
 
 // TODO: Connect to MongoDB
 try {
@@ -25,6 +26,7 @@ app.use('*', formatResponse)
 
 // TODO: Routes
 app.route('/api/v3', drinkRoutes)
+app.route('/api/v3', brandRoutes)
 
 app.notFound((c) => {
   return c.json({
