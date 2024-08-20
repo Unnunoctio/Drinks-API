@@ -6,4 +6,4 @@ RUN bun install
 ARG PORT
 EXPOSE ${PORT:-3000}
 
-CMD ["bun", "src/index.ts"]
+CMD ["bun", "src/index.js"]
