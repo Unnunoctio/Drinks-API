@@ -26,9 +26,9 @@ app.use('*', customLogger)
 app.use('*', formatResponse)
 
 // TODO: Routes
-app.route('/api/v3', drinkRoutes)
-app.route('/api/v3', brandRoutes)
-app.route('/api/v3', originRoutes)
+app.route('/api/v2', drinkRoutes)
+app.route('/api/v2', brandRoutes)
+app.route('/api/v2', originRoutes)
 
 app.notFound((c) => {
   return c.json({
