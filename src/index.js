@@ -7,6 +7,7 @@ import { formatResponse } from './middlewares/response'
 import drinkRoutes from './routes/drink-routes'
 import brandRoutes from './routes/brand-routes'
 import originRoutes from './routes/origin-routes'
+import categoryRoutes from './routes/category-routes'
 
 // TODO: Connect to MongoDB
 try {
@@ -29,6 +30,7 @@ app.use('*', formatResponse)
 app.route('/api/v2', drinkRoutes)
 app.route('/api/v2', brandRoutes)
 app.route('/api/v2', originRoutes)
+app.route('/api/v2', categoryRoutes)
 
 app.notFound((c) => {
   return c.json({
@@ -36,4 +38,5 @@ app.notFound((c) => {
   }, 404)
 })
 
+console.log('Server is running!')
 export default app
