@@ -1,31 +1,23 @@
 {
   "name": "drinks-api",
-  "description": "This API allows managing different types of alcoholic beverages, specifically Beers, Spirits, and Wines.",
   "version": "1.0.0",
+  "description": "API for drinks",
   "type": "module",
-  "main": "index.js",
-  "author": "Rafael Carvacho",
-  "license": "MIT",
-  "repository": "https://github.com/Unnunoctio/Drinks-API-V2.git",
+  "scripts": {
+    "dev": "bun run --hot src/index.js"
+  },
   "dependencies": {
-    "cors": "2.8.5",
-    "dotenv": "16.3.1",
-    "exceljs": "4.3.0",
-    "express": "4.18.2",
-    "mongoose": "7.5.0",
-    "morgan": "1.10.0",
-    "multer": "1.4.5-lts.1",
-    "zod": "3.22.2"
+    "hono": "4.5.5",
+    "mongoose": "8.5.3",
+    "nanoid": "5.0.7",
+    "xlsx": "0.18.5",
+    "zod": "3.23.8"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "standard": "17.1.0"
   },
   "eslintConfig": {
     "extends": "standard"
-  },
-  "scripts": {
-    "dev": "node --watch index.js",
-    "lint": "standard",
-    "start": "node index.js"
-  }
+  } 
 }
