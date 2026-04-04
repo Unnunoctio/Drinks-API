@@ -36,6 +36,7 @@ const urlPath = 'https://drinks-api.unnunoctio-dev.workers.dev/v1'
                     <AboutRoute method="GET" href={null} path="/beers/:id" description="# Obtener cerveza específica" />
                     <AboutRoute method="GET" href={`${urlPath}/beer-styles`} path="/beer-styles" description="# Listar estilos de cerveza" />
                     <AboutRoute method="GET" href={null} path="/beer-styles/:id" description="# Estilo específico" />
+                    <AboutRoute method="GET" href={`${urlPath}/beer-styles-tree`} path="/beer-styles-tree" description="# Árbol de estilos de cerveza" />
                 </ul>
             </section>
             <section class="pt-4">
@@ -43,7 +44,7 @@ const urlPath = 'https://drinks-api.unnunoctio-dev.workers.dev/v1'
                 <ul class="flex flex-col gap-y-1 pl-4 pt-1">
                     <AboutRoute method="GET" href={`${urlPath}/spirits`} path="/spirits" description="# Listar todos los destilados" />
                     <AboutRoute method="GET" href={null} path="/spirits/:id" description="# Obtener destilado específico" />
-                    <AboutRoute method="GET" href={`${urlPath}/spirits-types`} path="/beer-styles" description="# Listar tipos de destilados" />
+                    <AboutRoute method="GET" href={`${urlPath}/spirits-types`} path="/spirits-types" description="# Listar tipos de destilados" />
                     <AboutRoute method="GET" href={null} path="/spirits-types/:id" description="# Tipo específico" />
                     <AboutRoute
                         method="GET"
@@ -128,19 +129,20 @@ const urlPath = 'https://drinks-api.unnunoctio-dev.workers.dev/v1'
                 >, aprovechando una infraestructura global para mejorar los tiempos de carga.
             </p>
         </section>
+
+        <section class="mt-8 sm:mt-12 px-4 max-w-225">
+            <h2 class="text-xl sm:text-2xl font-medium">Repositorio del Proyecto</h2>
+            <ul class="flex flex-col gap-y-1 pt-6">
+                <li class="flex gap-8">
+                    <a
+                        href="https://github.com/Unnunoctio/Drinks-API"
+                        aria-label="drinks-website-api"
+                        target="_blank"
+                        rel="noreferrer"
+                        class="font-medium underline decoration-violet-600 underline-off-set-4 hover:text-violet-700">Drinks API</a
+                    >
+                </li>
+            </ul>
+        </section>
     </main>
-    <section class="mt-8 sm:mt-12 px-4 max-w-225">
-        <h2 class="text-xl sm:text-2xl font-medium">Repositorio del Proyecto</h2>
-        <ul class="flex flex-col gap-y-1 pt-6">
-            <li class="flex gap-8">
-                <a
-                    href="https://github.com/Unnunoctio/Drinks-API"
-                    aria-label="drinks-website-api"
-                    target="_blank"
-                    rel="noreferrer"
-                    class="font-medium underline decoration-violet-600 underline-off-set-4 hover:text-violet-700">Drinks API</a
-                >
-            </li>
-        </ul>
-    </section>
 </Layout>
