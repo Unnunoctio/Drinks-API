@@ -1,0 +1,16 @@
+CLAUDE.md
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.astro/
+
+# Env files
+.env
+.env.local
+.dev.vars
+
+# Wrangler
+.wrangler/

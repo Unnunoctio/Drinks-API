@@ -29,14 +29,9 @@
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",
     "dev": "wrangler dev",
-    "wg:build": "wrangler deploy --dry-run --outdir=dist",
-    "wg:deploy": "wrangler deploy",
-    "tf:init": "cd ../terraform/api && terraform init",
-    "tf:plan": "pnpm run wg:build && cd ../terraform/api && terraform plan",
-    "tf:deploy": "pnpm run wg:build && cd ../terraform/api && terraform apply",
-    "tf:destroy": "cd ../terraform/api && terraform destroy",
-    "db:schema": "powershell -Command \"Push-Location ../terraform/api; $DB_NAME = (terraform output -raw d1_database_name); Pop-Location; pnpm wrangler d1 execute $DB_NAME --remote --file=schema.sql\"",
-    "deploy": "pnpm run tf:deploy",
-    "deploy:init": "pnpm run tf:deploy && pnpm run wg:deploy && pnpm run db:schema && pnpm run deploy"
+    "build": "wrangler deploy --dry-run --outdir=dist",
+    "deploy": "wrangler deploy",
+    "db:schema": "wrangler d1 execute drinks-api-db --remote --file=schema.sql",
+    "deploy:init": "pnpm run deploy && pnpm run db:schema"
   }
 }

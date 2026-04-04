@@ -10,7 +10,7 @@ simple = { limit = 15, period = 60 }
 [[d1_databases]]
 binding = "DB"
 database_name = "drinks-api-db"
-database_id = "xxxx"
+database_id = "64c5ea3d-23ce-45b8-9138-279697f53305"
 
 [observability]
 enabled = true
