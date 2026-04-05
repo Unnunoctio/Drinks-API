@@ -11,6 +11,7 @@ type Bindings = {
     DB: D1Database
     RATE_LIMITER: RateLimit
     ADMIN_API_KEY: string
+    INTERNAL_API_KEY: string
 }
 
 const app = new Hono<{ Bindings: Bindings }>()
